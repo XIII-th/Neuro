@@ -1,0 +1,11 @@
+*.iml
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+*.idea/*
+/target/*
+
+Thumbs.db
