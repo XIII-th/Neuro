@@ -1,4 +1,6 @@
-package ru.xiii.net.neuron;
+package ru.xiii.lab.net.neuron;
+
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Связь нейронов с указанием силы и качества связи
@@ -15,9 +17,12 @@ public class Link {
      * @param child  дочерний нейрон
      * @param weight сила и качество связи
      */
-    public Link(Neuron parent, Neuron child, double weight) {
-        this._parent = parent;
-        this._child = child;
+    public Link(@NotNull Neuron parent, @NotNull Neuron child, double weight) {
+        if(parent == child)
+            throw new IllegalArgumentException("Unsupported loop link");
+
+        _parent = parent;
+        _child = child;
         _weight = weight;
     }
 
@@ -36,7 +41,7 @@ public class Link {
     }
 
     /**
-     * Получение силы и качества связи
+     * Получение силы связи
      */
     public double getWeight() {
         return _weight;
@@ -48,7 +53,7 @@ public class Link {
      * @param dW приращение для силы связи
      */
     public void appendWeight(double dW) {
-        this._weight += dW;
+        _weight += dW;
     }
 
     @Override
