@@ -1,4 +1,4 @@
-package ru.xiii.lab.net;
+package com.xiii.lab.net;
 
 /**
  * Created by Sergey on 01.08.2017

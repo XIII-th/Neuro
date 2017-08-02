@@ -1,12 +1,12 @@
-package ru.xiii.lab.net.neuron;
+package com.xiii.lab.net.neuron;
+
+import com.xiii.lab.net.IActivationFunction;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Random;
-
-import ru.xiii.lab.net.IActivationFunction;
 
 /**
  * Created by Sergey on 01.08.2017

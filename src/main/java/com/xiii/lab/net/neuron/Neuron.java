@@ -1,11 +1,11 @@
-package ru.xiii.lab.net.neuron;
+package com.xiii.lab.net.neuron;
+
+import com.xiii.lab.net.IActivationFunction;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import ru.xiii.lab.net.IActivationFunction;
 
 /**
  * Нейрон скрытого слоя
@@ -93,7 +93,7 @@ public class Neuron {
 
     @Override
     public String toString() {
-        return String.format("Code:%d In:%d Out:%d",
+        return String.format("Id:%d In:%d Out:%d",
                 _id,
                 _children == null ? 0 : _children.length,
                 _parents == null ? 0 : _parents.length);
@@ -101,9 +101,11 @@ public class Neuron {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Neuron) {
+        if(obj == null)
+            return false;
+        if (obj.getClass().equals(getClass()))
             return _id == ((Neuron) obj)._id;
-        }
+
         return super.equals(obj);
     }
 

@@ -1,4 +1,6 @@
-package ru.xiii.lab.net.neuron;
+package com.xiii.lab.net.neuron;
+
+import com.xiii.lab.net.IActivationFunction;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -7,8 +9,6 @@ import org.junit.Test;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-
-import ru.xiii.lab.net.IActivationFunction;
 
 /**
  * Created by Sergey on 01.08.2017
@@ -88,6 +88,15 @@ public class NeuronTest {
         // ссылки не влияют. Только id
         n2.setupLinks(Collections.singletonList(new Link(n1, n2, 0.0)));
         Assert.assertEquals(n1, n2);
+
+        n2 = new InputNeuron(id, _function);
+        Assert.assertNotEquals(n1, n2);
+
+        n2 = new OutNeuron(id, _function);
+        Assert.assertNotEquals(n1, n2);
+
+        n1 = new InputNeuron(id, _function);
+        Assert.assertNotEquals(n1, n2);
     }
 
     @Test

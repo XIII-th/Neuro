@@ -1,4 +1,4 @@
-package ru.xiii.lab.net.neuron;
+package com.xiii.lab.net.neuron;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -1,10 +1,10 @@
-package ru.xiii.lab.net.neuron;
+package com.xiii.lab.net.neuron;
+
+import com.xiii.lab.net.IActivationFunction;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-
-import ru.xiii.lab.net.IActivationFunction;
 
 /**
  * Нейрон выходного слоя. Высисления не кэшируются
