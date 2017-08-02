@@ -4,7 +4,7 @@ import com.xiii.lab.net.IActivationFunction;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Нейрон выходного слоя. Высисления не кэшируются
@@ -16,7 +16,7 @@ public class OutNeuron extends Neuron {
     }
 
     @Override
-    public void setupLinks(List<Link> links) {
+    public void setupLinks(Set<Link> links) {
         super.setupLinks(links);
         if(_parents.length != 0)
             throw new IllegalStateException("Out layer neron can't to have any parents");

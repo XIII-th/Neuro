@@ -7,15 +7,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * Created by Sergey on 01.08.2017
  */
 public class NeuronTest {
     private Neuron _n1, _n2;
-    private List<Link> _links;
+    private Set<Link> _links;
     private IActivationFunction _function;
     private Random _random;
 
@@ -27,7 +27,7 @@ public class NeuronTest {
         _n1 = new Neuron(_random.nextInt(), _function);
         _n2 = new Neuron(_random.nextInt(), _function);
 
-        _links = Collections.singletonList(new Link(_n1, _n2, 0.0));
+        _links = Collections.singleton(new Link(_n1, _n2, 0.0));
         _n1.setupLinks(_links);
         _n2.setupLinks(_links);
     }
@@ -44,7 +44,7 @@ public class NeuronTest {
 
         InputNeuron in = new InputNeuron(0, _function);
         Neuron n = new Neuron(1, _function);
-        List<Link> links = Collections.singletonList(new Link(n, in, weight));
+        Set<Link> links = Collections.singleton(new Link(n, in, weight));
 
         in.setupLinks(links);
         n.setupLinks(links);
@@ -86,7 +86,7 @@ public class NeuronTest {
         Assert.assertEquals(n1, n2);
 
         // ссылки не влияют. Только id
-        n2.setupLinks(Collections.singletonList(new Link(n1, n2, 0.0)));
+        n2.setupLinks(Collections.singleton(new Link(n1, n2, 0.0)));
         Assert.assertEquals(n1, n2);
 
         n2 = new InputNeuron(id, _function);

@@ -4,7 +4,7 @@ import com.xiii.lab.net.IActivationFunction;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Нейрон входного слоя
@@ -16,7 +16,7 @@ public class InputNeuron extends Neuron {
     }
 
     @Override
-    public void setupLinks(List<Link> links) {
+    public void setupLinks(Set<Link> links) {
         super.setupLinks(links);
         if(_children.length != 0)
             throw new IllegalStateException("Input layer neron can't to have any children");

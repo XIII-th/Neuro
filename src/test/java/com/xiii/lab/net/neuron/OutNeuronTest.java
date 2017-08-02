@@ -7,8 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * Created by Sergey on 02.08.2017
@@ -29,13 +29,13 @@ public class OutNeuronTest {
     @Test
     public void setupLinks() throws Exception {
         Neuron n = new Neuron(1, _function);
-        List<Link> links = Collections.singletonList(new Link(_n, n, 0.0));
+        Set<Link> links = Collections.singleton(new Link(_n, n, 0.0));
 
         _n.setupLinks(links);
         Assert.assertArrayEquals(links.toArray(), _n.getChildren());
         Assert.assertArrayEquals(new Link[0], _n.getParents());
 
-        links = Collections.singletonList(new Link(n, _n, 0.0));
+        links = Collections.singleton(new Link(n, _n, 0.0));
         try {
             _n.setupLinks(links);
             Assert.fail("Parents is not supported for output neuron");
@@ -49,7 +49,7 @@ public class OutNeuronTest {
         double v = _random.nextDouble();
         InputNeuron n = new InputNeuron(1, _function);
         Link link = new Link(_n, n, 1.5);
-        _n.setupLinks(Collections.singletonList(link));
+        _n.setupLinks(Collections.singleton(link));
         n.setValue(v);
 
         double result = _function.activate(_function.activate(v, 0) * link.getWeight(), 0);

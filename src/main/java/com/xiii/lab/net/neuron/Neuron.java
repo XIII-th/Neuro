@@ -5,7 +5,7 @@ import com.xiii.lab.net.IActivationFunction;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Нейрон скрытого слоя
@@ -26,7 +26,7 @@ public class Neuron {
         _children = _parents = new Link[0];
     }
 
-    public void setupLinks(List<Link> links){
+    public void setupLinks(Set<Link> links){
         ArrayList<Link> children = new ArrayList<>(), parents = new ArrayList<>();
 
         for (Link link : links) {
