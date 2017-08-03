@@ -4,6 +4,7 @@ import com.xiii.lab.net.neuron.InputNeuron;
 import com.xiii.lab.net.neuron.Neuron;
 import com.xiii.lab.net.neuron.OutNeuron;
 
+import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +14,7 @@ import java.util.Arrays;
 /**
  * Created by Sergey on 02.08.2017
  */
-public class NetUtilsTest {
+public class NetUtilsTest extends NetUtils{
     private IActivationFunction _function;
     private InputNeuron[] _inputLayer;
     private Neuron[] _middleLayer;
@@ -53,6 +54,11 @@ public class NetUtilsTest {
         Assert.assertArrayEquals(new Neuron[0], n);
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void unexpectedNeuronType() throws Exception {
+        NetUtils.createNeuronSet(AbstractNeuron.class, _function, 0, 1);
+    }
+
     @Test
     public void createNeuronSetIds() throws Exception {
         Neuron[] n = NetUtils.createNeuronSetRange(Neuron.class, _function, 0, 0);
@@ -66,11 +72,16 @@ public class NetUtilsTest {
                 new Neuron(-1, _function),
                 new Neuron(0, _function),
                 new Neuron(1, _function)}, n);
-
-        try {
-            n = NetUtils.createNeuronSetRange(Neuron.class, _function, 2, 0);
-            Assert.fail("Unexpected order of index range definition");
-        }catch (IllegalArgumentException ignored){}
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void unexpectedOrderTest() throws Exception {
+        NetUtils.createNeuronSetRange(Neuron.class, _function, 2, 0);
+    }
+
+    private abstract class AbstractNeuron extends Neuron{
+        public AbstractNeuron(int id, @NotNull IActivationFunction function) {
+            super(id, function);
+        }
+    }
 }

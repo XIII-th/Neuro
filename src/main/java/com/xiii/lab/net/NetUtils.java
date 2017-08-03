@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
  * Created by Sergey on 02.08.2017
  */
 
-public class NetUtils {
+public abstract class NetUtils {
 
     public static <N extends Neuron> N[] createNeuronSet(Class<N> cls, IActivationFunction f, int... id){
         @SuppressWarnings("unchecked")
