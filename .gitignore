@@ -1,5 +1,17 @@
-.gradle
+# Gradle build artifacts
 /build/
+
+# Gradle cache
+.gradle
+
+# IDE
+/.idea/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Package Files
+*.jar
 
 # Ignore Gradle GUI config
 gradle-app.setting
