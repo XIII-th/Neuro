@@ -1,12 +1,11 @@
 package com.xiii.lab.net.neuron;
 
-import com.xiii.lab.net.IActivationFunction;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Random;
+import static com.xiii.lab.net.TestConstants.F;
+import static com.xiii.lab.net.TestConstants.RANDOM;
 
 /**
  * Created by Sergey on 01.08.2017
@@ -18,16 +17,14 @@ public class LinkTest {
 
     @Before
     public void setUp() throws Exception {
-        IActivationFunction function = (v, c) -> v;
-        _n1 = new Neuron(0, function);
-        _n2 = new Neuron(1, function);
+        _n1 = new Neuron(0, F);
+        _n2 = new Neuron(1, F);
     }
 
     @Test
     public void appendWeight() throws Exception {
         Link link = new Link(_n1, _n2, 0.0);
-        Random r = new Random();
-        double v = r.nextDouble();
+        double v = RANDOM.nextDouble();
         link.appendWeight(v);
         Assert.assertEquals(v, link.getWeight(), 0.0);
     }

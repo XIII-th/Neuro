@@ -1,14 +1,14 @@
 package com.xiii.lab.net.neuron;
 
-import com.xiii.lab.net.IActivationFunction;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Collections;
-import java.util.Random;
 import java.util.Set;
+
+import static com.xiii.lab.net.TestConstants.F;
+import static com.xiii.lab.net.TestConstants.RANDOM;
 
 /**
  * Created by Sergey on 01.08.2017
@@ -16,16 +16,11 @@ import java.util.Set;
 public class NeuronTest {
     private Neuron _n1, _n2;
     private Set<Link> _links;
-    private IActivationFunction _function;
-    private Random _random;
 
     @Before
     public void setUp() throws Exception {
-        _function = (v, c) -> v;
-        _random = new Random();
-
-        _n1 = new Neuron(_random.nextInt(), _function);
-        _n2 = new Neuron(_random.nextInt(), _function);
+        _n1 = new Neuron(RANDOM.nextInt(), F);
+        _n2 = new Neuron(RANDOM.nextInt(), F);
 
         _links = Collections.singleton(new Link(_n1, _n2, 0.0));
         _n1.setupLinks(_links);
@@ -42,8 +37,8 @@ public class NeuronTest {
     public void getValue() throws Exception {
         double weight = 1.5;
 
-        InputNeuron in = new InputNeuron(0, _function);
-        Neuron n = new Neuron(1, _function);
+        InputNeuron in = new InputNeuron(0, F);
+        Neuron n = new Neuron(1, F);
         Set<Link> links = Collections.singleton(new Link(n, in, weight));
 
         in.setupLinks(links);
@@ -52,9 +47,9 @@ public class NeuronTest {
         // не установлено значение входа - нет результата
         Assert.assertTrue(Double.isNaN(n.getValue()));
 
-        double v = _random.nextDouble();
+        double v = RANDOM.nextDouble();
         in.setValue(v);
-        Assert.assertEquals(v*weight, n.getValue(), 0.0);
+        Assert.assertEquals(F.activate(F.activate(v, 0)*weight, 0), n.getValue(), 0.0);
 
         // после поучения данных кэш чистится
         Assert.assertTrue(Double.isNaN(n._valueCache));
@@ -74,28 +69,28 @@ public class NeuronTest {
 
     @Test
     public void getId() throws Exception {
-        int id = _random.nextInt();
-        Neuron n = new Neuron(id, _function);
+        int id = RANDOM.nextInt();
+        Neuron n = new Neuron(id, F);
         Assert.assertEquals(id, n.getId());
     }
 
     @Test
     public void equals() throws Exception {
-        int id = _random.nextInt();
-        Neuron n1 = new Neuron(id, _function), n2 = new Neuron(id, _function);
+        int id = RANDOM.nextInt();
+        Neuron n1 = new Neuron(id, F), n2 = new Neuron(id, F);
         Assert.assertEquals(n1, n2);
 
         // ссылки не влияют. Только id
         n2.setupLinks(Collections.singleton(new Link(n1, n2, 0.0)));
         Assert.assertEquals(n1, n2);
 
-        n2 = new InputNeuron(id, _function);
+        n2 = new InputNeuron(id, F);
         Assert.assertNotEquals(n1, n2);
 
-        n2 = new OutNeuron(id, _function);
+        n2 = new OutNeuron(id, F);
         Assert.assertNotEquals(n1, n2);
 
-        n1 = new InputNeuron(id, _function);
+        n1 = new InputNeuron(id, F);
         Assert.assertNotEquals(n1, n2);
     }
 
