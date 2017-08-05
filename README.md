@@ -1,1 +1,2 @@
-![neural-map.jpg](https://bitbucket.org/repo/edgxxj/images/870492079-neural-map.jpg)
+# Neuro
+Simple constructor of neural net

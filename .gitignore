@@ -1,11 +1,26 @@
-*.iml
+# Gradle build artifacts
+/build/
 
-# Package Files #
+# Gradle cache
+.gradle
+
+# IDE
+/.idea/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Package Files
 *.jar
-*.war
-*.ear
 
-*.idea/*
-/target/*
+# Ignore Gradle GUI config
+gradle-app.setting
 
-Thumbs.db
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
