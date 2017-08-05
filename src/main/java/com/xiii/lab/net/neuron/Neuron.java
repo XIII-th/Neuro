@@ -77,9 +77,10 @@ public class Neuron {
 
     /**
      * Получение перечня родителских связей
-     *
+     * @deprecated нужны только на этапе обучения
      * @return возвращается оригинальный массив
      */
+    @Deprecated
     public Link[] getParents() {
         return _parents;
     }
