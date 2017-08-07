@@ -58,6 +58,30 @@ public class Link {
 
     @Override
     public String toString() {
-        return String.format("%s-%.2f-%s", _child, _weight, _parent);
+        return String.format("%s -> %.2f-> %s", _parent, _weight, _child);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Link link = (Link) o;
+
+        return Double.compare(link._weight, _weight) == 0 &&
+                (_parent != null ? _parent.equals(link._parent) : link._parent == null &&
+                        (_child != null ? _child.equals(link._child) : link._child == null));
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = _parent != null ? _parent.hashCode() : 0;
+        result = 31 * result + (_child != null ? _child.hashCode() : 0);
+        temp = Double.doubleToLongBits(_weight);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 }
