@@ -58,7 +58,7 @@ public class Link {
 
     @Override
     public String toString() {
-        return String.format("%s -> %.2f -> %s", _parent, _weight, _child);
+        return String.format("%s -> %.2f -> %s", _parent, _weight, _child).replace(',', '.');
     }
 
     @Override
