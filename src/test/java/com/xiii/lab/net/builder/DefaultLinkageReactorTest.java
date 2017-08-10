@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.xiii.lab.net.TestConstants.F;
+import static com.xiii.lab.net.TestConstants.MAX_LAYER_SIZE;
 import static com.xiii.lab.net.TestConstants.RANDOM;
 
 /**
@@ -26,11 +27,10 @@ public class DefaultLinkageReactorTest {
 
     @Before
     public void setUp() throws Exception {
-        byte size = 10;
-        _layers = new Neuron[10 + RANDOM.nextInt(size)][];
-        for (int i = 0, startId = 0, layerSize = 10 + RANDOM.nextInt(size);
+        _layers = new Neuron[10 + RANDOM.nextInt(MAX_LAYER_SIZE)][];
+        for (int i = 0, startId = 0, layerSize = 10 + RANDOM.nextInt(MAX_LAYER_SIZE);
              i < _layers.length;
-             i++, layerSize = 10 + RANDOM.nextInt(size)) {
+             i++, layerSize = 10 + RANDOM.nextInt(MAX_LAYER_SIZE)) {
             if (i == 0)
                 _layers[i] = NetUtils.createNeuronSetRange(InputNeuron.class, F, startId, startId += layerSize);
             else if (i == _layers.length - 1)

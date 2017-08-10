@@ -33,6 +33,15 @@ public class NeuronTest {
         Assert.assertArrayEquals(_n2.getParents(), _links.toArray());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void unexpectedLink() throws Exception {
+        Link link = new Link(
+                new Neuron(_n1.getId() + 1, F),
+                new Neuron(_n1.getId() + 2, F),
+                RANDOM.nextDouble());
+        _n1.setupLinks(Collections.singleton(link));
+    }
+
     @Test
     public void getValue() throws Exception {
         double weight = 1.5;
@@ -79,6 +88,8 @@ public class NeuronTest {
         int id = RANDOM.nextInt();
         Neuron n1 = new Neuron(id, F), n2 = new Neuron(id, F);
         Assert.assertEquals(n1, n2);
+
+        Assert.assertFalse(n1.equals(null));
 
         // ссылки не влияют. Только id
         n2.setupLinks(Collections.singleton(new Link(n1, n2, 0.0)));

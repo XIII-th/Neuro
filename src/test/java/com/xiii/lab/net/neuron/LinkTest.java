@@ -36,4 +36,13 @@ public class LinkTest {
             Assert.fail("Loop links is not supported");
         }catch (IllegalArgumentException ignored){}
     }
+
+    @Test
+    public void toStringTest() throws Exception {
+        Link link = new Link(_n1, _n2, 0.123456789);
+        Assert.assertEquals(String.format("%s -> 0,12 -> %s", _n1, _n2), link.toString());
+
+        link = new Link(_n1, _n2, 123456789.123456789);
+        Assert.assertEquals(String.format("%s -> 123456789,12 -> %s", _n1, _n2), link.toString());
+    }
 }

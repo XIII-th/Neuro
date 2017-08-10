@@ -23,7 +23,7 @@ public class DefaultLinkageReactor implements ILinkageReactor {
                 Neuron[] activeLayer = layers[activeLayerIndex], layer = layers[layerIndex];
                 for (int i = 0; i < activeLayer.length; i++)
                     for (int j = 0; j < layer.length; j++) {
-                        double weight = rules.acceptLinkage(activeLayer[i], i, layer[j], j);
+                        double weight = rules.acceptLinkage(activeLayer[i], activeLayerIndex, layer[j], layerIndex);
                         if (Double.isNaN(weight)) continue;
                         Link link = new Link(activeLayer[i], layer[j], weight);
                         // append neuron links to neuron links list

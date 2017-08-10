@@ -7,6 +7,7 @@ import java.util.Random;
  */
 
 public class TestConstants {
+    public static int MAX_LAYER_SIZE = 30;
     public static final Random RANDOM;
     public static final IActivationFunction F;
 
