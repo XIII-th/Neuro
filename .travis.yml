@@ -6,11 +6,11 @@ before_install:
 jobs:
   include:
     - stage: check
-      script: ./gradlew check
+      script: ./gradlew check --stacktrace
     - stage: assemble
-      script: ./gradlew assemble
+      script: ./gradlew assemble --stacktrace
     - stage: buld
-      script: ./gradlew build
+      script: ./gradlew build --stacktrace
     - stage : test
-      script: ./gradlew test
+      script: ./gradlew test --stacktrace
      
