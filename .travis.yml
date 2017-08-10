@@ -3,14 +3,4 @@ language: java
 before_install:
   - chmod +x gradlew
 
-jobs:
-  include:
-    - stage: check
-      script: ./gradlew check --stacktrace
-    - stage: assemble
-      script: ./gradlew assemble --stacktrace
-    - stage: buld
-      script: ./gradlew build --stacktrace
-    - stage : test
-      script: ./gradlew test --stacktrace
-     
+script: ./gradlew check
