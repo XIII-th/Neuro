@@ -1,0 +1,12 @@
+language: java
+
+jobs:
+  include:
+    - stage: check
+      script: ./gradlew check
+    - stage: assemble
+      script: ./gradlew assemble
+    - stage: buld
+      script: ./gradlew build
+    - stage : test
+      script: ./gradlew test
