@@ -1,5 +1,8 @@
 language: java
 
+before_install:
+  - chmod +x gradlew
+
 jobs:
   include:
     - stage: check
@@ -10,3 +13,4 @@ jobs:
       script: ./gradlew build
     - stage : test
       script: ./gradlew test
+     
